@@ -1,0 +1,296 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Oswald", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-body: "IBM Plex Sans", sans-serif;
+
+  --color-concrete: #ededea;
+  --color-black: #111111;
+  --color-red: #e3261f;
+  --color-steel: #6b6f72;
+  --color-white: #ffffff;
+  --color-rule: #d0d0cc;
+}
+
+/* ================================================
+   PROMO BAR + NAV OFFSET (obowiązkowe)
+   ================================================ */
+#promo-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: #0d0d10;
+  color: #f3f3f1;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0 1rem;
+  text-align: center;
+  font-family: var(--font-mono);
+}
+#promo-bar strong { font-weight: 700; }
+#promo-bar:hover { background: #16161a; }
+#nav { top: 2.25rem; }
+
+/* ================================================
+   BASE
+   ================================================ */
+html {
+  scroll-behavior: smooth;
+  background: var(--color-concrete);
+  color: var(--color-black);
+  font-family: var(--font-body);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-concrete);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-red);
+  color: var(--color-white);
+}
+
+/* ================================================
+   SWISS GRID — TYPOGRAPHIC RULES (linie-rules)
+   ================================================ */
+.rule-top { border-top: 2px solid var(--color-black); }
+.rule-bottom { border-bottom: 2px solid var(--color-black); }
+.rule-red-top { border-top: 3px solid var(--color-red); }
+.rule-red-bottom { border-bottom: 3px solid var(--color-red); }
+.rule-steel { border-top: 1px solid var(--color-steel); }
+
+/* ================================================
+   DIAGONAL ROOF LINE — SVG background motif
+   ================================================ */
+.roof-diagonal {
+  position: relative;
+}
+.roof-diagonal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cline x1='0' y1='100%25' x2='100%25' y2='0' stroke='%23e3261f' stroke-width='2' opacity='0.15'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ================================================
+   DISPLAY TYPOGRAPHY — Swiss bold grotesk
+   ================================================ */
+.display-xl {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(4rem, 11vw, 13rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.display-lg {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 7vw, 8rem);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.display-md {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3.5vw, 4rem);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.section-number {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-steel);
+}
+
+.label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ================================================
+   REVEAL (scroll animation)
+   ================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ================================================
+   NAV SCROLLED STATE
+   ================================================ */
+#nav.scrolled {
+  background: color-mix(in srgb, var(--color-concrete) 95%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--color-black);
+}
+
+/* ================================================
+   GRID LINES — konstrukcyjny sznyt
+   ================================================ */
+.grid-cross {
+  position: relative;
+}
+.grid-cross::after {
+  content: '+';
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--color-steel);
+  opacity: 0.5;
+}
+
+/* ================================================
+   BIG NUMBER — section stat
+   ================================================ */
+.big-number {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3.5rem, 9vw, 10rem);
+  line-height: 1;
+  color: var(--color-black);
+  text-transform: uppercase;
+}
+.big-number-red {
+  color: var(--color-red);
+}
+
+/* ================================================
+   BUTTON STYLES
+   ================================================ */
+.btn-primary {
+  display: inline-block;
+  background: var(--color-red);
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  border: 2px solid var(--color-red);
+  transition: background 0.2s, color 0.2s;
+}
+.btn-primary:hover {
+  background: var(--color-black);
+  border-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: var(--color-black);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  border: 2px solid var(--color-black);
+  transition: background 0.2s, color 0.2s;
+}
+.btn-outline:hover {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+/* ================================================
+   MOBILE MENU
+   ================================================ */
+#mobile-menu a {
+  display: block;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-rule);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-black);
+}
+#mobile-menu a:hover { color: var(--color-red); }
+
+/* ================================================
+   FORM
+   ================================================ */
+.form-field {
+  width: 100%;
+  background: var(--color-white);
+  border: 2px solid var(--color-black);
+  padding: 0.875rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-black);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-field:focus {
+  border-color: var(--color-red);
+}
+.form-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-steel);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+/* ================================================
+   TICKER / MARQUEE
+   ================================================ */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }

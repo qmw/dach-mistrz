@@ -1,0 +1,684 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const uslugi = [
+  {
+    nr: "01",
+    nazwa: "Krycie Dachów",
+    opis: "Blacha trapezowa, blachodachówka, dachówka ceramiczna i cementowa, gont bitumiczny. Trwałe, szczelne pokrycia na każdy typ dachu.",
+    cena: "od 65 zł/m²",
+    ikona: "◼",
+  },
+  {
+    nr: "02",
+    nazwa: "Więźba Dachowa",
+    opis: "Konstrukcje dachowe z drewna suszonego komorowo. Projekty indywidualne, więźby krokwiowe, płatwiowo-kleszczowe, wiązarowe.",
+    cena: "od 180 zł/m²",
+    ikona: "△",
+  },
+  {
+    nr: "03",
+    nazwa: "Rynny i Orynnowanie",
+    opis: "Montaż rynien PVC i stalowych. Systemy rynnowe Lindab, Galeco, Marley. Odwodnienia, rury spustowe, kosze.",
+    cena: "od 45 zł/mb",
+    ikona: "◻",
+  },
+  {
+    nr: "04",
+    nazwa: "Obróbki Blacharskie",
+    opis: "Kominki, pasy nadrynnowe i podrynnowe, obróbki okien połaciowych, uszczelnienia przejść dachowych. Blacha stalowa ocynkowana i powlekana.",
+    cena: "od 90 zł/mb",
+    ikona: "◇",
+  },
+  {
+    nr: "05",
+    nazwa: "Naprawy i Przeglądy",
+    opis: "Uszczelnienie przecieków, wymiana uszkodzonych elementów, czyszczenie dachów z mchu i porostów, przeglądy sezonowe.",
+    cena: "od 350 zł",
+    ikona: "○",
+  },
+];
+
+const realizacje = [
+  {
+    img: "photo-1558618666-fcd25c85cd64",
+    opis: "Dom jednorodzinny, Kraków — dachówka ceramiczna 280 m²",
+    rok: "2024",
+  },
+  {
+    img: "photo-1504307651254-35680f356dfd",
+    opis: "Budynek wielorodzinny, Warszawa — blacha trapezowa 620 m²",
+    rok: "2024",
+  },
+  {
+    img: "photo-1512917774080-9991f1c4c750",
+    opis: "Rezydencja, Wrocław — gont bitumiczny 340 m²",
+    rok: "2023",
+  },
+  {
+    img: "photo-1600596542815-ffad4c1539a9",
+    opis: "Dom pasywny, Gdańsk — blachodachówka 195 m²",
+    rok: "2023",
+  },
+  {
+    img: "photo-1449158743715-0a90ebb6d2d8",
+    opis: "Hala magazynowa, Łódź — blacha falista 850 m²",
+    rok: "2023",
+  },
+  {
+    img: "photo-1416331108676-a22ccb276e35",
+    opis: "Kościół, Poznań — dachówka ceramiczna 510 m²",
+    rok: "2022",
+  },
+];
+
+const opinie = [
+  {
+    imie: "Marek Wiśniewski",
+    miasto: "Kraków",
+    ocena: 5,
+    tekst: "Ekipa Dach-Mistrz wykonała wymianę całego pokrycia w 4 dni. Praca perfekcyjna, dach szczelny jak skała. Polecam bez zastrzeżeń.",
+    usluga: "Krycie dachów",
+  },
+  {
+    imie: "Joanna Kowalczyk",
+    miasto: "Warszawa",
+    ocena: 5,
+    tekst: "Podejście profesjonalne od pierwszego kontaktu. Wycena w 24h, terminowa realizacja, sprzątanie po sobie. Znów zatrudnię.",
+    usluga: "Więźba dachowa",
+  },
+  {
+    imie: "Tomasz Nowak",
+    miasto: "Wrocław",
+    ocena: 5,
+    tekst: "Szybka naprawa przecieku przed zimą. Fachowcy wiedzą co robią, cena uczciwa. Gwarancja 5 lat — to mówi samo za siebie.",
+    usluga: "Naprawa dachu",
+  },
+  {
+    imie: "Anna Dąbrowska",
+    miasto: "Gdańsk",
+    ocena: 5,
+    tekst: "Kompleksowa obsługa: więźba + pokrycie + rynny. Jeden wykonawca, zero problemów z koordynacją. Jakość na medal.",
+    usluga: "Kompleks dachowy",
+  },
+];
+
+const proces = [
+  { nr: "I", krok: "Kontakt i oględziny", opis: "Bezpłatna wizja lokalna w ciągu 48h od zgłoszenia. Pomiar i ocena stanu technicznego dachu." },
+  { nr: "II", krok: "Wycena", opis: "Szczegółowa kalkulacja w ciągu 24h od oględzin. Bez ukrytych kosztów, z pełną specyfikacją materiałów." },
+  { nr: "III", krok: "Umowa i harmonogram", opis: "Podpisanie umowy z określonym terminem realizacji. Materiały zamawiamy z wyprzedzeniem." },
+  { nr: "IV", krok: "Realizacja", opis: "Doświadczona ekipa montażowa, praca bez przestojów. Codzienny raport z postępu prac." },
+  { nr: "V", krok: "Odbiór i gwarancja", opis: "Protokół odbioru, dokumentacja powykonawcza. 5 lat gwarancji na szczelność i wykonanie." },
+];
+
+const menuLinks = [
+  { href: "#uslugi", label: "Usługi" },
+  { href: "#realizacje", label: "Realizacje" },
+  { href: "#dlaczego-my", label: "O nas" },
+  { href: "#proces", label: "Proces" },
+  { href: "#opinie", label: "Opinie" },
+  { href: "#wycena", label: "Wycena" },
+];
+---
+
+<Layout>
+  <!-- ============================================================
+       NAWIGACJA
+       ============================================================ -->
+  <nav id="nav" class="fixed left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-screen-xl mx-auto px-6 h-16 flex items-center justify-between border-b-2 border-black bg-[#ededea]">
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-3 text-decoration-none">
+        <span class="flex items-center gap-0">
+          <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:0.05em;text-transform:uppercase;color:#111;">DACH</span>
+          <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:0.05em;text-transform:uppercase;color:#e3261f;">—</span>
+          <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:0.05em;text-transform:uppercase;color:#111;">MISTRZ</span>
+        </span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="hidden lg:flex items-center gap-8 list-none m-0 p-0">
+        {menuLinks.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              style="font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:#111;text-decoration:none;"
+              class="hover:text-[#e3261f] transition-colors"
+            >
+              {l.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- CTA + burger -->
+      <div class="flex items-center gap-4">
+        <a href="#wycena" class="hidden md:inline-block btn-primary text-sm px-5 py-2.5">
+          Darmowa wycena
+        </a>
+        <button id="burger" class="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer bg-transparent border-0" aria-label="Menu">
+          <span class="w-6 h-0.5 bg-black block"></span>
+          <span class="w-6 h-0.5 bg-black block"></span>
+          <span class="w-4 h-0.5 bg-black block"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-[#ededea] border-b-2 border-black px-6 pb-6">
+      {menuLinks.map((l) => (
+        <a href={l.href}>{l.label}</a>
+      ))}
+      <a href="#wycena" class="btn-primary mt-4 text-center">Darmowa wycena</a>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO — SWISS TYPOGRAPHIC, wielka typografia + linia dachu
+       ============================================================ -->
+  <section id="hero" class="min-h-screen bg-[#ededea] flex flex-col justify-end pt-32 pb-0 relative overflow-hidden">
+    <!-- Wielka diagonal linia dachu — SVG ornament -->
+    <svg
+      class="absolute right-0 top-0 w-full h-full pointer-events-none"
+      preserveAspectRatio="none"
+      viewBox="0 0 1440 900"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <!-- Linia kalenicy dachu -->
+      <line x1="720" y1="120" x2="1440" y2="520" stroke="#e3261f" stroke-width="3" opacity="0.5"/>
+      <line x1="720" y1="120" x2="0" y2="520" stroke="#111111" stroke-width="2" opacity="0.15"/>
+      <!-- Kratownica techniczna -->
+      <line x1="720" y1="120" x2="720" y2="520" stroke="#6b6f72" stroke-width="1" stroke-dasharray="4 8" opacity="0.4"/>
+      <!-- Punkt szczytu -->
+      <circle cx="720" cy="120" r="5" fill="#e3261f" opacity="0.7"/>
+      <!-- Etykieta rysunek techniczny -->
+      <text x="730" y="115" font-family="IBM Plex Mono" font-size="10" fill="#6b6f72" opacity="0.6">KALCENIA ▲ 28°</text>
+    </svg>
+
+    <!-- Numer sekcji -->
+    <div class="relative z-10 max-w-screen-xl mx-auto px-6 w-full">
+      <div class="label-mono text-[#6b6f72] mb-4">DM / 2024 — POKRYCIA DACHOWE</div>
+    </div>
+
+    <!-- OGROMNA TYPOGRAFIA — łamana, nie wyśrodkowana -->
+    <div class="relative z-10 max-w-screen-xl mx-auto px-6 pb-0 w-full">
+      <div class="display-xl text-[#111] leading-none">
+        DAJ<br />
+        <span class="text-[#e3261f]">DACH</span><br />
+        SWOJEMU<br />
+        DOMOWI.
+      </div>
+    </div>
+
+    <!-- Pasek dolny hero — asymetryczny, z CTA i tagline -->
+    <div class="relative z-10 border-t-2 border-black mt-8 bg-[#111111]">
+      <div class="max-w-screen-xl mx-auto px-6 py-6 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <div class="flex-1">
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:1rem;color:#ededea;line-height:1.5;max-width:480px;">
+            Profesjonalne pokrycia dachowe, więźba, rynny i obróbki blacharskie.
+            Realizacje w całej Polsce. Gwarancja 5 lat.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4 shrink-0">
+          <a href="#wycena" class="btn-primary">
+            Darmowa wycena →
+          </a>
+          <a href="tel:+48600123456" class="btn-outline" style="color:#ededea;border-color:#ededea;">
+            600 123 456
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TICKER — biegający pas ze słowami kluczowymi
+       ============================================================ -->
+  <div class="overflow-hidden bg-[#e3261f] py-3 border-y-2 border-black">
+    <div class="marquee-track">
+      {Array(3).fill(null).map(() => (
+        <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.15em;text-transform:uppercase;color:#ededea;">
+          &nbsp;&nbsp;&nbsp;BLACHA TRAPEZOWA&nbsp;&nbsp;·&nbsp;&nbsp;DACHÓWKA CERAMICZNA&nbsp;&nbsp;·&nbsp;&nbsp;WIĘŹBA DACHOWA&nbsp;&nbsp;·&nbsp;&nbsp;RYNNY STALOWE&nbsp;&nbsp;·&nbsp;&nbsp;OBRÓBKI BLACHARSKIE&nbsp;&nbsp;·&nbsp;&nbsp;NAPRAWA PRZECIEKÓW&nbsp;&nbsp;·&nbsp;&nbsp;GWARANCJA 5 LAT&nbsp;&nbsp;·&nbsp;&nbsp;BEZPŁATNA WYCENA&nbsp;&nbsp;·&nbsp;&nbsp;
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <!-- ============================================================
+       USŁUGI — asymetryczna lista z numerami, nie siatka kart
+       ============================================================ -->
+  <section id="uslugi" class="bg-[#ededea] py-24">
+    <div class="max-w-screen-xl mx-auto px-6">
+      <!-- Nagłówek sekcji — Swiss: numer + wielka typografia + rule -->
+      <div class="border-t-2 border-black pt-4 mb-0 flex items-baseline gap-6">
+        <span class="section-number">02 / USŁUGI</span>
+      </div>
+      <h2 class="display-lg text-[#111] mt-2 mb-0">CO<br /><span class="text-[#e3261f]">ROBIMY</span></h2>
+      <div class="border-b-2 border-black mb-16 pb-4">
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:1rem;color:#6b6f72;max-width:520px;margin-top:0.75rem;">
+          Kompleksowa obsługa dacharska — od projektu po odbiór. Każde zlecenie realizujemy z gwarancją.
+        </p>
+      </div>
+
+      <!-- Lista usług — odważny układ z numerami -->
+      <div class="divide-y-2 divide-black">
+        {uslugi.map((u, i) => (
+          <div class={`reveal flex flex-col md:flex-row md:items-center gap-4 md:gap-8 py-8 ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
+            <!-- Numer -->
+            <div class="shrink-0 w-20">
+              <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:3.5rem;line-height:1;color:#e3261f;opacity:0.25;">
+                {u.nr}
+              </span>
+            </div>
+            <!-- Treść -->
+            <div class="flex-1">
+              <div class="label-mono text-[#6b6f72] mb-2">{u.ikona} USŁUGA {u.nr}</div>
+              <h3 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.5rem,3vw,2.5rem);text-transform:uppercase;color:#111;margin:0 0 0.5rem;">
+                {u.nazwa}
+              </h3>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:0.9375rem;color:#6b6f72;line-height:1.6;max-width:600px;margin:0;">
+                {u.opis}
+              </p>
+            </div>
+            <!-- Cena -->
+            <div class="shrink-0 text-right md:text-right">
+              <div class="label-mono text-[#6b6f72] mb-1">CENA</div>
+              <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1.75rem;color:#111;white-space:nowrap;">
+                {u.cena}
+              </div>
+              <a href="#wycena" class="label-mono text-[#e3261f] hover:underline mt-2 inline-block">
+                Zapytaj →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DLACZEGO MY — LICZBY (wielkie, animowane countery)
+       ============================================================ -->
+  <section id="dlaczego-my" class="bg-[#111111] py-24">
+    <div class="max-w-screen-xl mx-auto px-6">
+      <div class="border-t-2 border-[#ededea] pt-4 mb-0 flex items-baseline gap-6">
+        <span class="section-number" style="color:#6b6f72;">03 / DLACZEGO MY</span>
+      </div>
+      <h2 class="display-lg mt-2 mb-12" style="color:#ededea;">
+        LICZBY<br /><span style="color:#e3261f;">MÓWIĄ</span>
+      </h2>
+
+      <!-- Statystyki — cztery wielkie liczby -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-0 border-2 border-[#ededea]">
+        {[
+          { val: 18, unit: "LAT", opis: "na rynku" },
+          { val: 4200, unit: "M²", opis: "dachów rocznie" },
+          { val: 580, unit: "+", opis: "zadowolonych klientów" },
+          { val: 5, unit: "LAT", opis: "gwarancji" },
+        ].map((s, i) => (
+          <div class={`reveal p-8 text-center ${i < 3 ? "border-r-0 lg:border-r-2 lg:border-[#ededea]" : ""} ${i < 2 ? "border-b-2 border-[#ededea] lg:border-b-0" : ""}`}>
+            <div class="big-number big-number-red flex items-end justify-center gap-1">
+              <span data-target={s.val} class="tabular-nums">0</span>
+              <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(1.5rem,3vw,3.5rem);color:#e3261f;">{s.unit}</span>
+            </div>
+            <div class="label-mono mt-3" style="color:#6b6f72;">{s.opis}</div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Atuty -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-x-2 border-b-2 border-[#ededea] mt-0">
+        {[
+          { tytul: "Certyfikowani dekarzowie", opis: "Uprawnienia budowlane, szkolenia producentów materiałów. Wiemy co robimy." },
+          { tytul: "Własne materiały", opis: "Kupujemy bezpośrednio u producentów. Niższe ceny, pełna kontrola jakości." },
+          { tytul: "Terminowość 98%", opis: "Dotrzymujemy terminów. Jeśli przekroczymy — zwracamy 1% wartości za każdy dzień." },
+        ].map((a, i) => (
+          <div class={`reveal p-8 ${i < 2 ? "md:border-r-2 md:border-[#ededea]" : ""}`}>
+            <div class="label-mono mb-3" style="color:#e3261f;">{String(i + 1).padStart(2, "0")}</div>
+            <h4 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1.25rem;text-transform:uppercase;color:#ededea;margin:0 0 0.75rem;">
+              {a.tytul}
+            </h4>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:0.875rem;color:#6b6f72;line-height:1.6;margin:0;">
+              {a.opis}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       REALIZACJE — galeria z overlayem
+       ============================================================ -->
+  <section id="realizacje" class="bg-[#ededea] py-24">
+    <div class="max-w-screen-xl mx-auto px-6">
+      <div class="border-t-2 border-black pt-4 mb-0">
+        <span class="section-number">04 / REALIZACJE</span>
+      </div>
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+        <h2 class="display-lg text-[#111] mt-2 mb-0">
+          NASZE<br /><span class="text-[#e3261f]">PRACE</span>
+        </h2>
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:0.9375rem;color:#6b6f72;max-width:320px;margin:0;">
+          Każdy dach to indywidualny projekt.<br />Wybieramy najlepsze rozwiązania dla danego budynku.
+        </p>
+      </div>
+
+      <!-- Galeria — łamana siatka, nie równy grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-2 border-black">
+        {realizacje.map((r, i) => (
+          <div
+            class={`reveal relative overflow-hidden group cursor-pointer ${i === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
+            style={`aspect-ratio: ${i === 0 ? "16/9" : "4/3"};border-right:${i % 3 !== 2 ? "2px solid #111" : "0"};border-bottom:${i < 3 ? "2px solid #111" : "0"};`}
+          >
+            <img
+              src={`https://images.unsplash.com/${r.img}?auto=format&fit=crop&w=800&q=80`}
+              alt={r.opis}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+            <!-- Overlay on hover -->
+            <div class="absolute inset-0 bg-[#111] opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+            <div class="absolute inset-0 p-4 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="label-mono text-[#e3261f] mb-1">{r.rok}</div>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:0.875rem;color:#ededea;line-height:1.4;margin:0;">{r.opis}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROCES — kroki z dużymi numerami rzymskimi
+       ============================================================ -->
+  <section id="proces" class="bg-[#ededea] py-24 border-t-2 border-black">
+    <div class="max-w-screen-xl mx-auto px-6">
+      <div class="border-t-2 border-black pt-4 mb-0">
+        <span class="section-number">05 / PROCES REALIZACJI</span>
+      </div>
+      <h2 class="display-lg text-[#111] mt-2 mb-16">
+        JAK<br /><span class="text-[#e3261f]">DZIAŁAMY</span>
+      </h2>
+
+      <!-- Kroki — pozioma oś czasu na desktop -->
+      <div class="relative">
+        <!-- Linia łącząca — tylko desktop -->
+        <div class="hidden lg:block absolute top-12 left-0 right-0 h-0.5 bg-black z-0"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-4">
+          {proces.map((p) => (
+            <div class="reveal relative z-10 flex flex-col">
+              <!-- Numer w kółku -->
+              <div class="w-24 h-24 border-2 border-[#e3261f] flex items-center justify-center bg-[#ededea] mb-6 shrink-0">
+                <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1.75rem;color:#e3261f;">{p.nr}</span>
+              </div>
+              <h4 style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1rem;text-transform:uppercase;color:#111;margin:0 0 0.5rem;letter-spacing:0.05em;">
+                {p.krok}
+              </h4>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:0.875rem;color:#6b6f72;line-height:1.6;margin:0;">
+                {p.opis}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       OPINIE — kafelki z grubymi ramkami
+       ============================================================ -->
+  <section id="opinie" class="bg-[#111111] py-24">
+    <div class="max-w-screen-xl mx-auto px-6">
+      <div class="border-t-2 border-[#ededea] pt-4 mb-0">
+        <span class="section-number" style="color:#6b6f72;">06 / OPINIE KLIENTÓW</span>
+      </div>
+      <h2 class="display-lg mt-2 mb-16" style="color:#ededea;">
+        CO MÓWIĄ<br /><span style="color:#e3261f;">KLIENCI</span>
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border-2 border-[#ededea]">
+        {opinie.map((o, i) => (
+          <div
+            class={`reveal p-8 ${i < 2 ? "border-b-2 border-[#ededea]" : ""} ${i % 2 === 0 ? "md:border-r-2 md:border-[#ededea]" : ""}`}
+          >
+            <!-- Gwiazdki -->
+            <div class="flex gap-1 mb-4">
+              {Array(o.ocena).fill(null).map(() => (
+                <span style="color:#e3261f;font-size:1rem;">★</span>
+              ))}
+            </div>
+            <blockquote style="font-family:'IBM Plex Sans',sans-serif;font-size:1rem;color:#ededea;line-height:1.7;font-style:italic;margin:0 0 1.5rem;">
+              „{o.tekst}"
+            </blockquote>
+            <div class="border-t border-[#6b6f72] pt-4 flex items-center justify-between">
+              <div>
+                <div style="font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;text-transform:uppercase;color:#ededea;">
+                  {o.imie}
+                </div>
+                <div class="label-mono" style="color:#6b6f72;">{o.miasto}</div>
+              </div>
+              <div class="label-mono" style="color:#e3261f;">{o.usluga}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FORMULARZ WYCENY + MAPA OSM
+       ============================================================ -->
+  <section id="wycena" class="bg-[#ededea] py-24">
+    <div class="max-w-screen-xl mx-auto px-6">
+      <div class="border-t-2 border-black pt-4 mb-0">
+        <span class="section-number">07 / KONTAKT I WYCENA</span>
+      </div>
+      <h2 class="display-lg text-[#111] mt-2 mb-16">
+        BEZPŁATNA<br /><span class="text-[#e3261f]">WYCENA</span>
+      </h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 border-2 border-black">
+        <!-- Formularz -->
+        <div class="p-8 border-b-2 border-black lg:border-b-0 lg:border-r-2">
+          <div class="label-mono text-[#6b6f72] mb-8">FORMULARZ KONTAKTOWY</div>
+
+          <form id="wycena-form" class="flex flex-col gap-5">
+            <div>
+              <label class="form-label">Imię i nazwisko *</label>
+              <input type="text" required placeholder="Jan Kowalski" class="form-field" />
+            </div>
+            <div>
+              <label class="form-label">Telefon *</label>
+              <input type="tel" required placeholder="+48 600 000 000" class="form-field" />
+            </div>
+            <div>
+              <label class="form-label">E-mail</label>
+              <input type="email" placeholder="jan@email.pl" class="form-field" />
+            </div>
+            <div>
+              <label class="form-label">Rodzaj prac *</label>
+              <select required class="form-field">
+                <option value="">— wybierz —</option>
+                <option>Krycie dachu — blacha</option>
+                <option>Krycie dachu — dachówka</option>
+                <option>Więźba dachowa</option>
+                <option>Rynny i orynnowanie</option>
+                <option>Obróbki blacharskie</option>
+                <option>Naprawa / przegląd</option>
+                <option>Inne</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label">Przybliżona powierzchnia dachu (m²)</label>
+              <input type="number" placeholder="np. 200" class="form-field" />
+            </div>
+            <div>
+              <label class="form-label">Wiadomość</label>
+              <textarea rows="3" placeholder="Opis, lokalizacja, pytania..." class="form-field resize-none"></textarea>
+            </div>
+            <button type="submit" class="btn-primary text-center w-full">
+              WYŚLIJ ZAPYTANIE O WYCENĘ
+            </button>
+            <p style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:#6b6f72;line-height:1.5;">
+              * Pola wymagane. Oddzwonimy w ciągu 24h. Wycena bezpłatna, bez zobowiązań.
+            </p>
+          </form>
+        </div>
+
+        <!-- Dane kontaktowe + mapa -->
+        <div class="flex flex-col">
+          <div class="p-8 border-b-2 border-black">
+            <div class="label-mono text-[#6b6f72] mb-6">DANE KONTAKTOWE</div>
+            <div class="flex flex-col gap-5">
+              {[
+                { ico: "↗", label: "TELEFON", val: "+48 600 123 456", href: "tel:+48600123456" },
+                { ico: "✉", label: "E-MAIL", val: "kontakt@dach-mistrz.pl", href: "mailto:kontakt@dach-mistrz.pl" },
+                { ico: "◉", label: "ADRES", val: "ul. Dekarska 14\n30-001 Kraków", href: null },
+                { ico: "◷", label: "GODZINY", val: "Pon–Pt: 7:00–17:00\nSob: 8:00–14:00", href: null },
+              ].map((k) => (
+                <div class="flex gap-4 items-start">
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:1rem;color:#e3261f;flex-shrink:0;width:1.5rem;">{k.ico}</span>
+                  <div>
+                    <div class="label-mono text-[#6b6f72] mb-0.5">{k.label}</div>
+                    {k.href ? (
+                      <a href={k.href} style="font-family:'IBM Plex Sans',sans-serif;font-size:1rem;color:#111;text-decoration:none;font-weight:500;" class="hover:text-[#e3261f]">
+                        {k.val}
+                      </a>
+                    ) : (
+                      <p style="font-family:'IBM Plex Sans',sans-serif;font-size:1rem;color:#111;margin:0;white-space:pre-line;font-weight:500;">
+                        {k.val}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Mapa OSM -->
+          <div class="flex-1 min-h-[280px]">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=19.89%2C50.03%2C20.01%2C50.09&layer=mapnik&marker=50.0614%2C19.9366"
+              width="100%"
+              height="100%"
+              style="min-height:280px;border:0;display:block;filter:grayscale(40%) contrast(1.05);"
+              loading="lazy"
+              title="Mapa lokalizacji Dach-Mistrz Kraków"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="bg-[#111111] border-t-2 border-[#ededea]">
+    <!-- Wielka typografia footer -->
+    <div class="max-w-screen-xl mx-auto px-6 pt-16 pb-8">
+      <div class="overflow-hidden mb-12">
+        <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(3rem,8vw,10rem);line-height:0.9;color:#ededea;opacity:0.07;text-transform:uppercase;letter-spacing:-0.02em;white-space:nowrap;">
+          DACH-MISTRZ
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-t border-[#6b6f72] pt-10">
+        <!-- Logo i opis -->
+        <div class="md:col-span-2">
+          <div style="font-family:'Oswald',sans-serif;font-weight:700;font-size:1.5rem;text-transform:uppercase;color:#ededea;margin-bottom:1rem;">
+            DACH<span style="color:#e3261f;">—</span>MISTRZ
+          </div>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:0.875rem;color:#6b6f72;line-height:1.6;max-width:320px;margin:0 0 1.5rem;">
+            Profesjonalne usługi dekarskie od 2006 roku. Kraków i cała Polska.
+            Zaufało nam ponad 580 klientów.
+          </p>
+          <div class="flex gap-3">
+            {["FB", "IG", "YT"].map((s) => (
+              <a
+                href="#"
+                style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:#6b6f72;border:1px solid #6b6f72;padding:0.4rem 0.6rem;text-decoration:none;letter-spacing:0.1em;"
+                class="hover:text-[#e3261f] hover:border-[#e3261f] transition-colors"
+              >
+                {s}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Usługi -->
+        <div>
+          <div class="label-mono text-[#6b6f72] mb-4">USŁUGI</div>
+          <ul class="list-none m-0 p-0 flex flex-col gap-2">
+            {["Krycie dachów", "Więźba dachowa", "Rynny", "Obróbki blacharskie", "Naprawy"].map((u) => (
+              <li>
+                <a href="#uslugi" style="font-family:'IBM Plex Sans',sans-serif;font-size:0.875rem;color:#6b6f72;text-decoration:none;" class="hover:text-[#ededea]">
+                  {u}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Kontakt -->
+        <div>
+          <div class="label-mono text-[#6b6f72] mb-4">KONTAKT</div>
+          <div class="flex flex-col gap-3">
+            <a href="tel:+48600123456" style="font-family:'Oswald',sans-serif;font-weight:600;font-size:1.25rem;color:#ededea;text-decoration:none;" class="hover:text-[#e3261f]">
+              600 123 456
+            </a>
+            <a href="mailto:kontakt@dach-mistrz.pl" style="font-family:'IBM Plex Sans',sans-serif;font-size:0.875rem;color:#6b6f72;text-decoration:none;" class="hover:text-[#ededea]">
+              kontakt@dach-mistrz.pl
+            </a>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:0.875rem;color:#6b6f72;margin:0;line-height:1.5;">
+              ul. Dekarska 14<br />30-001 Kraków
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Credit i copyright -->
+      <div class="border-t border-[#6b6f72] mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:#6b6f72;letter-spacing:0.08em;text-transform:uppercase;margin:0;">
+          © 2024 Dach-Mistrz. Wszelkie prawa zastrzeżone.
+        </p>
+        <!-- OBOWIĄZKOWY CREDIT -->
+        <a
+          href="https://stronainternetowa.biz"
+          target="_blank"
+          rel="noopener"
+          style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:#6b6f72;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;"
+          class="hover:text-[#ededea] transition-colors"
+        >
+          Przykładowa strona zrobiona przez <strong style="color:#e3261f;">stronainternetowa.biz</strong>
+        </a>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  /* Nav scrolled — tło betonowe, border czarny */
+  #nav.scrolled {
+    background: color-mix(in srgb, #ededea 95%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid #111111;
+  }
+
+  /* Smooth anchor offset dla fixed nav (nav 64px + promo-bar 36px = 100px) */
+  :target { scroll-margin-top: 6.5rem; }
+
+  /* Galeria — równomierne wiersze */
+  @media (max-width: 767px) {
+    .grid img { aspect-ratio: 16/9; }
+  }
+
+  /* Ticker - rozwiązanie dla wartości animacji w TW v4 */
+  .marquee-track {
+    gap: 0;
+  }
+</style>

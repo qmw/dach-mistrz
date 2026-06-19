@@ -1,0 +1,17 @@
+{
+  "name": "dach-mistrz",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Dach-Mistrz — profesjonalna firma dekarska, pokrycia dachowe, więźba, rynny, obróbki blacharskie",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": { "astro": "^5.7.0" },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.17",
+    "tailwindcss": "^4.0.17"
+  }
+}
